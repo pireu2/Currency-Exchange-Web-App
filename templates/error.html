@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Error
+{% endblock %}
+
+{% block main %}
+    <div class="container-fluid border" id="login_rect">
+        <h1 class="mb-3 mt-3">Error {{code}}</h1>
+        <div class="mb-3 medium text-center">
+            {{message}}
+        <form action="/">
+            <div class="d-grid mb-3 mt-3">
+                <button class="btn btn-grad" type="submit">Back Home</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

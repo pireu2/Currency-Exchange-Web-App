@@ -1,0 +1,14 @@
+Currency Exchange Web App
+
+Main Features:
+    -ability to see the exchange rate between any two currency using an api
+    -ability to compare to your local exchange rate
+    -ability to see how much money you lose depending the sum you want to exchange localy
+    -list of all suported currencies
+    -all rates for a specified currency
+    -historical rates for a specified currency
+
+Other Features:
+    -the ability to favorite particular exchange rates to your profile
+    -the ability to create a account to save your favorites
+    -a history to see how much money you lost during a specific period

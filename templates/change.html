@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Change Password
+{% endblock %}
+
+{% block main %}
+    <div class="container-fluid border" id="login_rect">
+        <h1 class="mb-3 mt-3">Change Password</h1>
+        <div class="mb-3 small text-center">
+            Please enter your details.
+        </div>
+        <form action="/change" method="post">
+            <div class="input-group mb-3">
+                <input class="form-control form-control-lg mx-auto w-280" required id="current_password" name="current_password" placeholder="Current Password" type="password">
+                <button class="btn btn-outline-secondary btn-grad" type="button" id="show3">
+                    <i class="bi bi-eye-fill" id="show_icon3"></i>
+                </button>
+            </div>
+            <div class="input-group mb-3">
+                <input class="form-control form-control-lg mx-auto w-280" required id="password" name="password" placeholder="New Password" type="password">
+                <button class="btn btn-outline-secondary btn-grad" type="button" id="show1">
+                    <i class="bi bi-eye-fill" id="show_icon1"></i>
+                </button>
+            </div>
+            <div class="input-group mb-3">
+                <input class="form-control form-control-lg mx-auto w-280" required id="confirm_password" name="confirm_password" placeholder="Confirm Password" type="password">
+                <button class="btn btn-outline-secondary btn-grad" type="button" id="show2">
+                    <i class="bi bi-eye-fill" id="show_icon2"></i>
+                </button>
+            </div>
+            <div class="d-grid mb-3">
+                <button class="btn btn-grad" type="submit">Register</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
