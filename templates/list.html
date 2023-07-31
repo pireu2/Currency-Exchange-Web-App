@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    List
+{% endblock %}
+
+{% block main %}
+    <div class="container-fluid border" id="table-rect">
+        <h1 class="mb-3 mt-3">List</h1>
+        <div class="mb-3 small text-center">
+            List of all suported currencies.
+        </div>
+        <table class="table" id="list">
+            <thead>
+                <tr>
+                    <th>Flag</th>
+                    <th>Symbol</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                    {% for item in currencies %}
+                    <tr>
+                        <td><img class="flag-icon" src="{{item.flag}}"></td>
+                        <td>{{item.symbol}}</td>
+                        <td>{{item.description}}</td>
+                    </tr>
+                    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

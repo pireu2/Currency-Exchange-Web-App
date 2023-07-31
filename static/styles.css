@@ -39,7 +39,8 @@ a{
 }
 
 #login_rect{
-    width: 300px;
+    width: 500px;
+    max-width: 90%;
     border-radius: 10px;
     border-color: var(--background) !important;
     background-color: var(--secondary);
@@ -88,6 +89,7 @@ h1{
     width: 28px;
     height: 21px;
     margin: 3px;
+    border-radius: 5px;
 }
 
 .dropdown-menu{
@@ -97,3 +99,47 @@ h1{
     color: var(--text) !important;
 }
 
+#dropdownMenuButton2,#dropdownMenuButton3{
+    width: 100px !important;
+}
+
+
+#table-rect{
+    width: 500px;
+    max-width: 90%;
+    border-radius: 10px;
+    border-color: var(--background) !important;
+    background-color: var(--secondary) !important;
+}
+
+#list{
+    background-color: var(--secondary) !important;
+    color: var(--text) !important;
+}
+
+#table-rates{
+    background-color: var(--secondary) !important;
+    color: var(--text) !important;
+}
+
+.table-dark{
+    background-color: var(--secondary) !important;
+    color: var(--text) !important;
+}
+
+#checkbox_left{
+    width: 200px;
+    display: flex;
+
+}
+
+#list-main{
+    background-color: var(--secondary) !important;
+    color: var(--text) !important;
+}
+
+.form-control::-webkit-input-placeholder { color: var(--text); }  /* WebKit, Blink, Edge */
+.form-control:-moz-placeholder { color: var(--text); }  /* Mozilla Firefox 4 to 18 */
+.form-control::-moz-placeholder { color: var(--text); }  /* Mozilla Firefox 19+ */
+.form-control:-ms-input-placeholder { color: var(--text); }  /* Internet Explorer 10-11 */
+.form-control::-ms-input-placeholder { color: var(--text); }  /* Microsoft Edge */

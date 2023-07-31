@@ -2,7 +2,7 @@ import os
 import datetime
 
 from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session
+from flask import Flask, flash, redirect, render_template, request, session, jsonify
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import login_required, error
@@ -38,7 +38,7 @@ def after_request(response):
 @app.route("/")
 @login_required
 def index():
-    return render_template("layout.html", flags=flags)
+    return render_template("home.html", flags=flags)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -58,8 +58,8 @@ def login():
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], password):
             return error("Invalid username and/or password", 403)
         session["user_id"] = rows[0]["id"]
-        session["base"] = rows[0]["fav"]
-        session["base_flag"] = flag(session["base"])
+        session["exchange_base"] = session["current_base"] = session["base"] = rows[0]["fav"]
+        session["exchange_base_flag"] = session["current_base_flag"] = session["base_flag"] = flag(session["base"])
         return redirect("/")
 
     else:
@@ -141,11 +141,74 @@ def change():
         return render_template("change.html", flags=flags)
 
 
-@app.route("/process_selected_item", methods=["POST"])
-def process_selected_item():
+@app.route("/update_base", methods=["POST"])
+def update_base():
     if request.method == "POST":
         data = request.json
         selected_item = data.get("selected_item")
         session["base"] = selected_item
         session["base_flag"] = flag(session["base"])
-        db.execute("UPDATE users SET fav = ? WHERE id = ?",selected_item,session["user_id"])
+        db.execute("UPDATE users SET fav = ? WHERE id = ?",selected_item, session["user_id"])
+        return jsonify({'message': 'Item processed successfully', 'symbol' : session["base"], 'flag' : session["base_flag"]})
+
+@app.route("/current_base", methods=["POST"])
+def current_base():
+    if request.method == "POST":
+        data = request.json
+        selected_item = data.get("selected_item")
+        session["current_base"] = selected_item
+        session["current_base_flag"] = flag(session["current_base"])
+        return jsonify({'message': 'Item processed successfully', 'symbol' : session["current_base"], 'flag' : session["current_base_flag"]})
+
+@app.route("/exchange_base", methods=["POST"])
+def exchange_base():
+    if request.method == "POST":
+        data = request.json
+        selected_item = data.get("selected_item")
+        session["exchange_base"] = selected_item
+        session["exchange_base_flag"] = flag(session["exchange_base"])
+        return jsonify({'message': 'Item processed successfully', 'symbol' : session["exchange_base"], 'flag' : session["exchange_base_flag"]})
+
+@app.route("/exchange", methods=["POST","GET"])
+@login_required
+def exchange():
+    return render_template("exchange.html", flags=flags)
+
+@app.route("/list", methods=["GET"])
+@login_required
+def list():
+    symbols = api_request.symbols()
+    list=[]
+    for item in symbols:
+        list.append(
+            {
+                'flag' : flag(item['symbol']),
+                'symbol' : item['symbol'],
+                'description' : item['description']
+            }
+        )
+    return render_template("list.html", flags = flags, currencies = list)
+
+@app.route("/calculate_exchange", methods=["POST"])
+def calculate_exchange():
+    if request.method == "POST":
+        data = request.json
+        amount = data.get("selected_item")
+        base = session["current_base"]
+        to = session["exchange_base"]
+        result = api_request.convert(base, to, amount)
+        return jsonify({'message' : 'Conversion Succesful', 'result' : result})
+
+@app.route("/rates", methods=["GET"])
+def rates():
+    symbols = api_request.lookup(session["base"])
+    list=[]
+    for item in symbols:
+        list.append(
+            {
+                'flag' : flag(item['symbol']),
+                'symbol' : item['symbol'],
+                'rate' : item['rate']
+            }
+        )
+    return render_template("rates.html", flags = flags, currencies = list)

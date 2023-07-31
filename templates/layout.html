@@ -11,7 +11,7 @@
         <link href="/static/icon.svg" rel="icon">
         <link href="/static/styles.css" rel="stylesheet">
         <script src="/static/script.js"></script>
-        <title>Currency {% block title %}{% endblock %}</title>
+        <title>$ - {% block title %}{% endblock %}</title>
     </head>
 
     <body>
@@ -20,17 +20,13 @@
                 <a class="navbar-brand" href="/">
                     <img src="/static/icon.svg" alt="icon" height="30" width="50">Currency</a>
                     {% if session["user_id"] %}
-                    <div class="conteiner-fluid d-flex justify-content-center">
+                    <div class="conteiner-fluid d-flex justify-content-center" id="base">
                         <div class="dropdown">
                             <button class="btn btn-grad dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                {% if session["base"] %}
                                 <img src="{{session['base_flag']}}" class="flag-icon">{{session['base']}}
-                                {% else %}
-                                <i class="bi bi-cash-coin"></i>
-                                {% endif %}
                             </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="optionsList">
-                                <li><input type="text" class="form-control" placeholder="Search" aria-label="search" id="dropDownSearch"></li>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="optionsList1">
+                                <li><input type="text" class="form-control" placeholder="Search" aria-label="search" id="dropDownSearch1"></li>
                                 {% for item in flags %}
                                 <li class="d-flex flex-row lign-items-center">
                                     <img src={{item.flag}} class="flag-icon">
@@ -46,10 +42,9 @@
                 <div class="collapse navbar-collapse" id="navbar">
                     {% if session["user_id"] %}
                         <ul class="navbar-nav me-auto">
-                            <li class="nav-item"><a class="nav-link" href="/buy">Exchange</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/quote">List</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/buy">Rates</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/history">History</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/exchange">Exchange</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/list">List</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/rates">Rates</a></li>
                         </ul>
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item"><a class="nav-link" href="/change">Change Password</a></li>

@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Exchange
+{% endblock %}
+
+{% block main %}
+    <div class="container-fluid border" id="login_rect">
+        <h1 class="mb-3 mt-3">Exchange Currency</h1>
+        <form action="/exchange" method="post">
+            <div class="input-group mb-3">
+                <button class="btn btn-grad dropdown-toggle p-0" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="{{session['current_base_flag']}}" class="flag-icon">{{session['current_base']}}
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="optionsList2">
+                    <li><input type="text" class="form-control" placeholder="Search" aria-label="search" id="dropDownSearch2"></li>
+                    {% for item in flags %}
+                    <li class="d-flex flex-row lign-items-center">
+                        <img src={{item.flag}} class="flag-icon">
+                        <a class="dropdown-item ps-0" href="#">{{item.symbol}}</a>
+                    {% endfor %}
+                </ul>
+                <input class="form-control mx-auto w-280" required id="amount" name="amount" placeholder="Amount" type="text">
+            </div>
+            <div class="input-group mb-3">
+                <button class="btn btn-grad dropdown-toggle p-0" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="{{session['exchange_base_flag']}}" class="flag-icon">{{session['exchange_base']}}
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3" id="optionsList3">
+                    <li><input type="text" class="form-control" placeholder="Search" aria-label="search" id="dropDownSearch3"></li>
+                    {% for item in flags %}
+                    <li class="d-flex flex-row lign-items-center">
+                        <img src={{item.flag}} class="flag-icon">
+                        <a class="dropdown-item ps-0" href="#">{{item.symbol}}</a>
+                    {% endfor %}
+                </ul>
+                <input class="form-control mx-auto w-280" disabled id="exchange_amount" name="exchange_amount" type="text" placeholder="">
+            </div>
+            <div id="checkbox_left">
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">Check with your rate</label>
+                  </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control mx-auto w-280" id="rate" name="rate" placeholder="Your Rate" type="text">
+                <label for="rate">Your Rate</label>
+            </div>
+            <div class="mb-3" id="lose">
+
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

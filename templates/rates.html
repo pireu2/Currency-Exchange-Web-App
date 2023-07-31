@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Rates
+{% endblock %}
+
+{% block main %}
+    <div class="container-fluid border" id="table-rect">
+        <h1 class="mb-3 mt-3">Rates</h1>
+        <div class="mb-3 small text-center">
+            List of all exchange rates based on your favorite currency.
+        </div>
+        <div class="mb-3">
+            <input class="form-control form-control-lg mx-auto w-280"  autocomplete="off" id="search_table" name="search_table" placeholder="Search" type="text">
+        </div>
+        <table class="table" id="table-rates">
+            <thead>
+                <tr>
+                    <th>Flag</th>
+                    <th>Symbol</th>
+                    <th>Rate</th>
+                </tr>
+            </thead>
+            <tbody>
+                    {% for item in currencies %}
+                    <tr>
+                        <td><img class="flag-icon" src="{{item.flag}}"></td>
+                        <td>{{item.symbol}}</td>
+                        <td>{{item.rate}}</td>
+                    </tr>
+                    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

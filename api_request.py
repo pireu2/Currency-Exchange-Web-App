@@ -190,7 +190,7 @@ def convert(base, to, amount):
     url = url + f"?from={base}&to={to}&amount={amount}"
     response = requests.get(url)
     data = response.json()
-    if data["success"] == True and data["base"] == base:
+    if data["success"] == True:
         return data["result"]
     else:
         return None
