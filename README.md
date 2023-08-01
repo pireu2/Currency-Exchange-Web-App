@@ -12,7 +12,6 @@ The Currency Exchange Web App is a Flask-based Python web application that allow
 4. [Installation](#installation)
 5. [Usage](#usage)
 6. [Contributing](#contributing)
-7. [License](#license)
 
 ## Main Features
 
@@ -50,8 +49,5 @@ The user-friendly interface of the web app allows users to navigate seamlessly b
 
 Contributions to the Currency Exchange Web App are welcome and encouraged. Whether it's fixing a bug, implementing a new feature, or improving the user interface, interested developers can refer to the project's GitHub repository for guidelines on how to contribute effectively.
 
-## License
-
-The Currency Exchange Web App is open-source software licensed under the [MIT License](link-to-license). Users are free to use, modify, and distribute the software as per the terms and conditions of the MIT License.
 
 In conclusion, the Currency Exchange Web App is a comprehensive and user-friendly platform that empowers users to access real-time exchange rates, make informed decisions, and stay updated with the dynamic world of currency exchange. Whether for personal use or business purposes, the web app offers valuable tools and insights to streamline currency-related transactions and financial planning. With a dedicated community of contributors, the application continues to evolve and improve, catering to the diverse needs of its users worldwide.
